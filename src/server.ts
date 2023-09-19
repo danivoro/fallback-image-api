@@ -2,7 +2,7 @@ const express = require("express");
 const { createCanvas } = require("canvas");
 
 const app = express();
-const PORT = 3000;
+const PORT = 5000;
 
 app.get(
   "/",
@@ -24,17 +24,22 @@ app.get(
     ctx.fillRect(0, 0, canvas.width, canvas.height);
 
     ctx.fillStyle = "#f0f0f0";
-    ctx.font = "80px Arial";
 
+    ctx.font = "80px Arial";
     const text = "Image not found for:";
     const userText = req.query.text || "";
 
     const textWidth = ctx.measureText(text).width;
+    const userTextWidth = ctx.measureText(userText).width;
     const x = (canvas.width - textWidth) / 2;
     const y = canvas.height / 2;
 
-    ctx.fillText(text, x, y - 50);
-    ctx.fillText(userText, x + 170, y + 50);
+    ctx.fillText(text, x, y - 80);
+
+    ctx.font = "bold 80px Arial";
+
+    const xUserText = (canvas.width - userTextWidth) / 2;
+    ctx.fillText(userText, xUserText, y + 80);
 
     try {
       res.set("Content-Type", "image/jpeg");
