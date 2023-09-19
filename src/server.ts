@@ -2,7 +2,7 @@ const express = require("express");
 const { createCanvas } = require("canvas");
 
 const app = express();
-const PORT = 3000;
+const PORT = 5000;
 
 app.get(
   "/",
@@ -20,7 +20,7 @@ app.get(
     const canvas = createCanvas(800, 600);
     const ctx = canvas.getContext("2d");
 
-    ctx.fillStyle = "#333333";
+    ctx.fillStyle = "#1a1a1a";
 
     ctx.fillRect(0, 0, canvas.width, canvas.height);
 
@@ -33,6 +33,7 @@ app.get(
     const textWidth = ctx.measureText(text).width;
     const userTextWidth = ctx.measureText(userText).width;
     const x = (canvas.width - textWidth) / 2;
+
     const y = canvas.height / 2;
 
     ctx.fillText(text, x, y - 80);
