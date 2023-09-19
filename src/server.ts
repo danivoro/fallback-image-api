@@ -20,7 +20,7 @@ app.get(
     const canvas = createCanvas(800, 600);
     const ctx = canvas.getContext("2d");
 
-    ctx.fillStyle = "#1a1a1a";
+    ctx.fillStyle = "#1a202d";
 
     ctx.fillRect(0, 0, canvas.width, canvas.height);
 
