@@ -8,7 +8,7 @@ const PORT = 3000;
 const fontPath = "./data/LeagueGothic-Regular.otf";
 registerFont(fontPath, { family: "CustomFont" });
 
-app.get("/custom-image", async (req, res) => {
+app.get("/", async (req, res) => {
   const canvas = createCanvas(800, 600);
   const ctx = canvas.getContext("2d");
 
@@ -17,7 +17,7 @@ app.get("/custom-image", async (req, res) => {
 
   ctx.fillStyle = "#f0f0f0";
   ctx.font = "80px CustomFont";
-  const text = "The shortcut of the day is:";
+  const text = "Resource image not found for:";
 
   const textWidth = ctx.measureText(text).width;
   const x = (canvas.width - textWidth) / 2;
@@ -29,13 +29,6 @@ app.get("/custom-image", async (req, res) => {
   ctx.fillText(userText, x + 170, y + 50);
 
   try {
-    const logoPath = path.join(__dirname, "../data/vsc-logo.png");
-    const logo = await loadImage(logoPath);
-
-    const logoX = 20;
-    const logoY = 20;
-    ctx.drawImage(logo, logoX + 20, logoY + 20, 120, 120);
-
     res.set("Content-Type", "image/jpeg");
 
     canvas.createJPEGStream().pipe(res);
