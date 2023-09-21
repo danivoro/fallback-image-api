@@ -5,6 +5,13 @@ const app = express();
 const PORT = 5000;
 
 app.get(
+  "/health-check",
+  async (_req: any, res: { json: (arg0: { msg: string }) => void }) => {
+    res.json({ msg: "system ok" });
+  }
+);
+
+app.get(
   "/",
   async (
     req: { query: { text: string } },
